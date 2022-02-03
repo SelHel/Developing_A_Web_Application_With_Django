@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+    <head>
+        <title>LITReview</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <header>
+            <div class="header_content">
+                <a href="{% url 'home' %}"><img class="header_img" src="{% static 'images/logo.png' %}" alt="logo" ></a>
+                
+                <nav class="header_menu">
+                    {% if user.is_authenticated %}
+                    <ul>
+                        <li><a href="">Flux</a></li>
+                        <li><a href="">Posts</a></li>
+                        <li><a href="">Abonnements</a></li>
+                        <li><a href="{% url 'logout' %}">Se déconnecter ({{ request.user }})</a></li>
+                    </ul>
+                    {% else %}
+                    <ul>
+                        <li><a href="{% url 'login' %}">Se connecter</a></li>
+                        <li><a href="{% url 'signup' %}">S'inscrire</a></li>
+                    </ul>
+                    {% endif %}
+                </nav>
+                
+            </div>
+        </header>
+        <div class="main">
+            {% block content %}{% endblock %}
+        </div> 
+        <footer>
+            <p>LITReview</p>
+        </footer>
+    </body>
+</html>
