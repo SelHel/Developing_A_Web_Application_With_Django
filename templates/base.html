@@ -8,13 +8,12 @@
         <header>
             <div class="header_content">
                 <a href="{% url 'home' %}"><img class="header_img" src="{% static 'images/logo.png' %}" alt="logo" ></a>
-                
                 <nav class="header_menu">
                     {% if user.is_authenticated %}
                     <ul>
                         <li><a href="">Flux</a></li>
                         <li><a href="">Posts</a></li>
-                        <li><a href="">Abonnements</a></li>
+                        <li><a href="{% url 'subscriptions' %}">Abonnements</a></li>
                         <li><a href="{% url 'logout' %}">Se déconnecter ({{ request.user }})</a></li>
                     </ul>
                     {% else %}
@@ -23,8 +22,7 @@
                         <li><a href="{% url 'signup' %}">S'inscrire</a></li>
                     </ul>
                     {% endif %}
-                </nav>
-                
+                </nav>           
             </div>
         </header>
         <div class="main">

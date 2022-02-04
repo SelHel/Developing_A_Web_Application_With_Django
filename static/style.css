@@ -1,5 +1,10 @@
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -7,6 +12,7 @@ body {
     background-color: #f5f5f5;
     font-family: "Gill Sans", sans-serif;
 }
+
 
 /* ------------------------------ HEADER -------------------------------*/
 header {
@@ -35,6 +41,7 @@ header .header_content .header_menu {
 }
 
 header .header_content .header_menu ul {
+    margin-top: 15px;
     display: flex;
     flex-direction: row;
     list-style-type: none;
@@ -57,8 +64,12 @@ header .header_content li a:hover {
 }
 /* ------------------------------ END HEADER -------------------------------*/
 
-/* --------------------------------- FORM ----------------------------------*/
-form {
+/* --------------------------------- FORM CONTAINER ----------------------------------*/
+.form_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-top: 80px;
     background-color: #fff;
     padding: 20px 60px;
@@ -67,14 +78,41 @@ form {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-form h1 {
+.form_container h1 {
     color: #333;
-    text-align:center;
+    text-align: center;
     font-size: 30px;
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
-form input {
+.form_container h3 {
+    color: #333;
+    font-size: 30px;
+    font-weight: 600;
+
+}
+
+.form_container p {
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+    font-size: 13px;
+}
+
+.form_container a {
+    text-align: center;
+    color: #333;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form input {
     padding: 15px;
     border-radius: 5px;
     border: none;
@@ -83,7 +121,7 @@ form input {
     margin-bottom: 15px;
 }
 
-form button {
+.form button {
     padding: 15px 25px;
     border-radius: 5px;
     border:none;
@@ -96,26 +134,74 @@ form button {
     transition: 0.3s;
 }
 
-form button:hover {
+.form button:hover {
+    background-color: #b4b4b4;
+}
+/* --------------------------------- END FORM CONTAINER ------------------------------------*/
+
+/* ------------------------------- SUBSCRIPTIONS ---------------------------------*/
+.subscription_form input {
+    width: 300px;
+    padding: 15px;
+    border:none;
+    border-radius: 5px;
+    background-color:#f2f2f2;
+    outline:none;
+}
+
+.subscription_form button {
+    width: 130px;
+    margin-left: 10px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    border:none;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #333;
+    outline:none;
+    cursor:pointer;
+    transition: 0.3s;
+}
+
+.subscription_form button:hover {
     background-color: #b4b4b4;
 }
 
-form p {
+.subscriptions_table {
+    table-layout: auto;
+    width: 80%;
+    border-collapse: collapse;
     text-align: center;
-    color: #333;
+    margin: auto;
 }
 
-form a {
-    text-align: center;
+.subscriptions_table a {
     color: #333;
+    text-decoration: none;
 }
+
+.subscriptions_table a:hover {
+    color: #b4b4b4;
+}
+
+.subscriptions_table td{
+    border: 3px solid #333;
+}
+
+.subscriptions_table td:nth-child(1){
+    width: 80%;
+    padding-left: 10px;
+    text-align: left;
+  }
+/* ----------------------------- END SUBSCRIPTIONS --------------------------------*/
 
 /* ------------------------------ FOOTER ---------------------------------*/
 footer {
     position: fixed;
     left: 0;
     bottom: 0;
-    height: auto;
+    height: 100px;
     width: 100%;
     background-color: #fff;
     box-shadow: 0 -1px 1px #d8d8d8;

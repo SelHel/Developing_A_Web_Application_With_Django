@@ -3,10 +3,20 @@
     {% if form.errors %}
         {{ form.errors }}
     {% endif %}
-    <form method="post">
+    <div class="form_container">
         <h1>Inscription</h1>
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >S’inscrire</button>
-    </form>
+        <form method="POST" action="." class="form" id="signup-form"> 
+            {% csrf_token %}
+                <div class="input-group"> 
+                    {{form.username}} 
+                </div> 
+                <div class="input-group"> 
+                    {{form.password1}} 
+                </div> 
+                <div class="input-group">
+                    {{form.password2}} 
+                </div> 
+                <button type="submit" >S'inscrire</button>
+        </form>
+    </div>
 {% endblock content %}
