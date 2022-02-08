@@ -80,15 +80,21 @@ header .header_content li a:hover {
 }
 
 .form_container h1 {
-    color: #333;
-    text-align: center;
+    color: #EC7063;
     font-size: 30px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form_container h2 {
+    color: #EC7063;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 10px;
 }
 
 .form_container h3 {
-    color: #333;
+    color: #EC7063;
     font-size: 30px;
     font-weight: 600;
     margin-bottom: 10px;
@@ -96,15 +102,16 @@ header .header_content li a:hover {
 }
 
 .form_container p {
-    margin-top: 20px;
+    width: 300px;
     text-align: center;
     color: #333;
     font-size: 13px;
+    margin-top: 10px;
 }
 
 .form_container a {
     text-align: center;
-    color: #333;
+    color: #EC7063;
 }
 
 .form {
@@ -124,15 +131,38 @@ header .header_content li a:hover {
     margin-bottom: 15px;
     color: #333;
 }
+
+#id_rating {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#id_rating input {
+    width: auto;
+    margin: 0 10px;
+}
+
+.form textarea {
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.form label {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
 /* --------------------------------- BUTTON ------------------------------------*/
 .button {
     padding: 15px 25px;
     border-radius: 5px;
     border:none;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: #fff;
-    background-color: #333;
+    background-color: #EC7063;
     outline:none;
     cursor:pointer;
     transition: 0.3s;
@@ -200,6 +230,7 @@ header .header_content li a:hover {
 
 /* ------------------------------ FOOTER ---------------------------------*/
 footer {
+    position: absolute;
     left: 0;
     bottom: 0;
     height: 100px;

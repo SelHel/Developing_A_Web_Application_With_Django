@@ -14,6 +14,7 @@ def flux(request):
 
 @login_required
 def ticket_creation(request):
+    """Permet la création d'un ticket."""
     ticket_form = TicketForm()
     if request.method == 'POST':
         ticket_form = TicketForm(request.POST, request.FILES)
@@ -28,19 +29,24 @@ def ticket_creation(request):
 
 @login_required
 def review_creation(request):
+    """Permet la création d'une critique sans réponse à un ticket."""
     ticket_form = TicketForm()
     review_form = ReviewForm()
     if request.method == 'POST':
-        ticket_form = ticket_creation()
+        ticket_form = TicketForm(request.POST, request.FILES)
         review_form = ReviewForm(request.POST)
         if all([ticket_form.is_valid(), review_form.is_valid()]):
+            ticket = ticket_form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
             review = review_form.save(commit=False)
             review.user = request.user
             review.save()
             return redirect('flux')
+
     context = {
         'ticket_form': ticket_form,
-        'review_form': review_form
+        'review_form': review_form,
     }
 
     return render(request, 'blog/review_creation.html', context=context)

@@ -4,7 +4,9 @@
         <h1>Créer une critique</h1>
         <form method="post" action="." enctype="multipart/form-data" class="form">
             {% csrf_token %}
+            <h2>Livre / Article</h2>
             {{ ticket_form.as_p }}
+            <h2>Critique</h2>
             {{ review_form.as_p }}
             <button type="submit" class="button">Envoyer</button>
         </form>

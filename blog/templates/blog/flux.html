@@ -9,5 +9,10 @@
                 <a href="{% url 'review_creation' %}"><input type="button" class="button" value="Créer une critique"/></a>
             </div>
         </div>
+        <div class="flux_elements_container">
+            {% for ticket in tickets %}
+                <p>{{ ticket.title }}</p>
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}
