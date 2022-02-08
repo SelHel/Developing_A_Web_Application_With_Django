@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -14,7 +14,7 @@ class LoginForm(forms.Form):
             'type': 'text',
             'placeholder': "Nom d'utilisateur",
             'maxlength': '16',
-            'minlength': '6',
+            'minlength': '5',
             })
         self.fields['password'].widget.attrs.update({
             'class': 'form-input',
@@ -42,7 +42,7 @@ class SignupForm(UserCreationForm):
             'type': 'text',
             'placeholder': "Nom d'utilisateur",
             'maxlength': '16',
-            'minlength': '6',
+            'minlength': '5',
             })
         self.fields['password1'].widget.attrs.update({
             'class': 'form-input',
@@ -68,5 +68,5 @@ class SignupForm(UserCreationForm):
     username = forms.CharField(max_length=20, label=False)
 
     class Meta(UserCreationForm.Meta):
-        model = get_user_model()
+        model = User
         fields = ['username', 'password1', 'password2']

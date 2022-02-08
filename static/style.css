@@ -63,7 +63,6 @@ header .header_content li a:hover {
     color: #b4b4b4;
 }
 /* ------------------------------ END HEADER -------------------------------*/
-
 /* --------------------------------- FORM CONTAINER ----------------------------------*/
 .form_container {
     display: flex;
@@ -71,10 +70,12 @@ header .header_content li a:hover {
     align-items: center;
     justify-content: center;
     margin-top: 80px;
+    margin-bottom: 80px;
     background-color: #fff;
-    padding: 20px 60px;
+    padding: 30px 60px 30px;
     border-radius: 10px;
     width: auto;
+    max-width: 1280px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -83,14 +84,15 @@ header .header_content li a:hover {
     text-align: center;
     font-size: 30px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .form_container h3 {
     color: #333;
     font-size: 30px;
     font-weight: 600;
-
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .form_container p {
@@ -113,15 +115,17 @@ header .header_content li a:hover {
 }
 
 .form input {
+    width: 300px;
     padding: 15px;
     border-radius: 5px;
     border: none;
     background-color: #f2f2f2;
     outline: none;
     margin-bottom: 15px;
+    color: #333;
 }
-
-.form button {
+/* --------------------------------- BUTTON ------------------------------------*/
+.button {
     padding: 15px 25px;
     border-radius: 5px;
     border:none;
@@ -134,43 +138,24 @@ header .header_content li a:hover {
     transition: 0.3s;
 }
 
-.form button:hover {
+.button:hover {
     background-color: #b4b4b4;
 }
-/* --------------------------------- END FORM CONTAINER ------------------------------------*/
+/* --------------------------------- END BUTTON ------------------------------------*/
 
 /* ------------------------------- SUBSCRIPTIONS ---------------------------------*/
 .subscription_form input {
-    width: 300px;
+    width: 800px;
     padding: 15px;
-    border:none;
+    border: none;
     border-radius: 5px;
-    background-color:#f2f2f2;
-    outline:none;
-}
-
-.subscription_form button {
-    width: 130px;
-    margin-left: 10px;
-    padding: 15px 25px;
-    border-radius: 5px;
-    border:none;
-    font-size: 12px;
-    font-weight: 600;
-    color: #fff;
-    background-color: #333;
-    outline:none;
-    cursor:pointer;
-    transition: 0.3s;
-}
-
-.subscription_form button:hover {
-    background-color: #b4b4b4;
+    background-color: #f2f2f2;
+    outline: none;
 }
 
 .subscriptions_table {
     table-layout: auto;
-    width: 80%;
+    width: 100%;
     border-collapse: collapse;
     text-align: center;
     margin: auto;
@@ -194,11 +179,27 @@ header .header_content li a:hover {
     padding-left: 10px;
     text-align: left;
   }
-/* ----------------------------- END SUBSCRIPTIONS --------------------------------*/
+/* -------------------------- END SUBSCRIPTIONS --------------------------*/
+
+/* ------------------------------- FLUX ----------------------------------*/
+.button_container {
+    height: auto;
+    max-width: 1280px;
+    padding: 10px 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.flux_button {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+/* ----------------------------- END FLUX --------------------------------*/
+
 
 /* ------------------------------ FOOTER ---------------------------------*/
 footer {
-    position: fixed;
     left: 0;
     bottom: 0;
     height: 100px;

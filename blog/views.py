@@ -2,32 +2,62 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-from . import models
+from .models import Ticket, UserFollows
+from .forms import ReviewForm, TicketForm
 
 
 @login_required
-def home(request):
-    tickets = models.Ticket.objects.all()
-    return render(request, 'blog/home.html', context={'tickets': tickets})
+def flux(request):
+    tickets = Ticket.objects.all()
+    return render(request, 'blog/flux.html', context={'tickets': tickets})
 
 
 @login_required
 def ticket_creation(request):
-    pass
+    ticket_form = TicketForm()
+    if request.method == 'POST':
+        ticket_form = TicketForm(request.POST, request.FILES)
+        if ticket_form.is_valid():
+            ticket = ticket_form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+            return redirect('flux')
+
+    return render(request, 'blog/ticket_creation.html', context={'ticket_form': ticket_form})
+
+
+@login_required
+def review_creation(request):
+    ticket_form = TicketForm()
+    review_form = ReviewForm()
+    if request.method == 'POST':
+        ticket_form = ticket_creation()
+        review_form = ReviewForm(request.POST)
+        if all([ticket_form.is_valid(), review_form.is_valid()]):
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.save()
+            return redirect('flux')
+    context = {
+        'ticket_form': ticket_form,
+        'review_form': review_form
+    }
+
+    return render(request, 'blog/review_creation.html', context=context)
 
 
 @login_required
 def subscriptions(request):
     connected_user = request.user
-    all_followers = models.UserFollows.objects.filter(followed_user=connected_user)
-    all_followed = models.UserFollows.objects.filter(user=connected_user)
+    all_followers = UserFollows.objects.filter(followed_user=connected_user)
+    all_followed = UserFollows.objects.filter(user=connected_user)
 
     if request.method == 'POST':
         to_follow = request.POST['username']
         try:
             user_to_follow = User.objects.get(username=to_follow)
 
-            models.UserFollows.objects.create(
+            UserFollows.objects.create(
                 user=request.user,
                 followed_user=user_to_follow
             )
@@ -40,6 +70,6 @@ def subscriptions(request):
 
 @login_required
 def unsubscribe(request, user_follows_id):
-    connection = models.UserFollows.objects.filter(id=user_follows_id)
+    connection = UserFollows.objects.filter(id=user_follows_id)
     connection.delete()
     return redirect('subscriptions')

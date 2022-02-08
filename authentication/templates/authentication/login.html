@@ -3,7 +3,7 @@
     <p>{{ message }}</p>
     <div class="form_container">
         <h1>Connexion</h1>
-        <form method="POST" action="." class="form" id="signup-form"> 
+        <form method="POST" action="." class="form"> 
             {% csrf_token %}
                 <div class="input-group"> 
                     {{form.username}} 
@@ -11,9 +11,8 @@
                 <div class="input-group">
                     {{form.password}}
                 </div>
-                <button type="submit" >Se connecter</button>
+                <button type="submit" class="button">Se connecter</button>
         </form>
         <p>Pas encore membre ? <a href="{% url 'signup' %}">Inscrivez-vous maintenant !</a></p>
-        <p><a href="{% url 'password_reset' %}">Mot de passe oublié ?</a></p>
     </div>
 {% endblock content %}

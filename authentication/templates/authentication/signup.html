@@ -5,18 +5,18 @@
     {% endif %}
     <div class="form_container">
         <h1>Inscription</h1>
-        <form method="POST" action="." class="form" id="signup-form"> 
+        <form method="POST" action="." class="form"> 
             {% csrf_token %}
                 <div class="input-group"> 
-                    {{form.username}} 
+                    {{ form.username }} 
                 </div> 
                 <div class="input-group"> 
-                    {{form.password1}} 
+                    {{ form.password1 }} 
                 </div> 
                 <div class="input-group">
-                    {{form.password2}} 
+                    {{ form.password2 }} 
                 </div> 
-                <button type="submit" >S'inscrire</button>
+                <button type="submit" class="button">S'inscrire</button>
         </form>
     </div>
 {% endblock content %}
