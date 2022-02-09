@@ -1,10 +1,17 @@
 * {
-    margin: 0;
-    padding: 0;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
+html {
+	height: 100%;
+}
+
 body {
+    min-height: 100%;
+    margin: 0;
+    padding: 100px 0;
+    position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -13,11 +20,16 @@ body {
     font-family: "Gill Sans", sans-serif;
 }
 
+.block_content {
+    margin: 20px 0;
+}
 
 /* ------------------------------ HEADER -------------------------------*/
 header {
     width: 100%;
-    height: auto;
+    position: absolute;
+    top: 0;
+    height: 100px;
     background-color: #fff;
     box-shadow: 0 1px 1px #d8d8d8;
 }
@@ -50,7 +62,7 @@ header .header_content .header_menu ul {
 
 header .header_content li a {
     display: block;
-    color: #333;
+    color: #5D6D7E;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -60,7 +72,7 @@ header .header_content li a {
 }
 
 header .header_content li a:hover {
-    color: #b4b4b4;
+    color: #AEB6BF;
 }
 /* ------------------------------ END HEADER -------------------------------*/
 /* --------------------------------- FORM CONTAINER ----------------------------------*/
@@ -69,8 +81,6 @@ header .header_content li a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 80px;
-    margin-bottom: 80px;
     background-color: #fff;
     padding: 30px 60px 30px;
     border-radius: 10px;
@@ -80,21 +90,21 @@ header .header_content li a:hover {
 }
 
 .form_container h1 {
-    color: #EC7063;
+    color: #5D6D7E;
     font-size: 30px;
     font-weight: 600;
     margin-bottom: 20px;
 }
 
 .form_container h2 {
-    color: #EC7063;
+    color: #5D6D7E;
     font-size: 15px;
     font-weight: 600;
     margin-top: 10px;
 }
 
 .form_container h3 {
-    color: #EC7063;
+    color: #5D6D7E;
     font-size: 30px;
     font-weight: 600;
     margin-bottom: 10px;
@@ -104,14 +114,14 @@ header .header_content li a:hover {
 .form_container p {
     width: 300px;
     text-align: center;
-    color: #333;
+    color: #5D6D7E;
     font-size: 13px;
     margin-top: 10px;
 }
 
 .form_container a {
     text-align: center;
-    color: #EC7063;
+    color: #5D6D7E;
 }
 
 .form {
@@ -129,7 +139,7 @@ header .header_content li a:hover {
     background-color: #f2f2f2;
     outline: none;
     margin-bottom: 15px;
-    color: #333;
+    color: #5D6D7E;
 }
 
 #id_rating {
@@ -162,14 +172,14 @@ header .header_content li a:hover {
     font-size: 14px;
     font-weight: 600;
     color: #fff;
-    background-color: #EC7063;
+    background-color: #5D6D7E;
     outline:none;
     cursor:pointer;
     transition: 0.3s;
 }
 
 .button:hover {
-    background-color: #b4b4b4;
+    background-color: #AEB6BF;
 }
 /* --------------------------------- END BUTTON ------------------------------------*/
 
@@ -189,19 +199,20 @@ header .header_content li a:hover {
     border-collapse: collapse;
     text-align: center;
     margin: auto;
+    color: #5D6D7E;
 }
 
 .subscriptions_table a {
-    color: #333;
+    color: #5D6D7E;
     text-decoration: none;
 }
 
 .subscriptions_table a:hover {
-    color: #b4b4b4;
+    color: #AEB6BF;
 }
 
 .subscriptions_table td{
-    border: 3px solid #333;
+    border: 3px solid #5D6D7E;
 }
 
 .subscriptions_table td:nth-child(1){
@@ -231,10 +242,10 @@ header .header_content li a:hover {
 /* ------------------------------ FOOTER ---------------------------------*/
 footer {
     position: absolute;
-    left: 0;
     bottom: 0;
+    left: 0;
+    right: 0;
     height: 100px;
-    width: 100%;
     background-color: #fff;
     box-shadow: 0 -1px 1px #d8d8d8;
     display: flex;
@@ -244,7 +255,7 @@ footer {
 
 footer p {
     margin: 0 auto;
-    color: #333;
+    color: #5D6D7E;
     font-size: 16px;
     font-weight: 600;
     text-align: center;
