@@ -28,6 +28,18 @@ def ticket_creation(request):
 
 
 @login_required
+def ticket_modification(request, ticket_id):
+    """Permet la modification d'un ticket."""
+    pass
+
+
+@login_required
+def ticket_deletion(request, ticket_id):
+    """Permet la suppression d'un ticket."""
+    pass
+
+
+@login_required
 def review_creation(request):
     """Permet la création d'une critique sans réponse à un ticket."""
     ticket_form = TicketForm()
@@ -38,8 +50,10 @@ def review_creation(request):
         if all([ticket_form.is_valid(), review_form.is_valid()]):
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
+            ticket_recorded = Ticket.objects.last()
             ticket.save()
             review = review_form.save(commit=False)
+            review.ticket = ticket_recorded
             review.user = request.user
             review.save()
             return redirect('flux')
@@ -50,6 +64,23 @@ def review_creation(request):
     }
 
     return render(request, 'blog/review_creation.html', context=context)
+
+
+@login_required
+def ticket_review_creation(request, ticket_id):
+    """"Permet la création d'une critique en réponse à un ticket."""
+    pass
+
+@login_required
+def review_modification(request, review_id):
+    """Permet la modification d'une critique."""
+    pass
+
+
+@login_required
+def review_deletion(request, review_id):
+    """Permet la suppression d'une critique."""
+    pass
 
 
 @login_required
