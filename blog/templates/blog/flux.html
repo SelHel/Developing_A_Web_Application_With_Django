@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="form_container">
+    <div class="page_container">
         <div class="button_container">
-            <div class="flux_button">
-                <a href="{% url 'ticket_creation' %}"><input type="button" class="button" value="Demander une critique"/></a>
-            </div>
-            <div class="flux_button">
-                <a href="{% url 'review_creation' %}"><input type="button" class="button" value="Créer une critique"/></a>
-            </div>
+            <a href="{% url 'ticket_creation' %}"><input type="button" class="button" value="Demander une critique"/></a>
+            <a href="{% url 'review_creation' %}"><input type="button" class="button" value="Créer une critique"/></a>
         </div>
         <div class="flux_elements_container">
         </div>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page_container">
+        <h1>Vos posts</h1>
+        {% if posts %}
+            {% for post in posts %}
+                <div class="post_container">
+                    {% if post.content_type == 'TICKET' %}
+                        {% include 'blog/ticket_snippet.html' %}
+                        <div class="button_container">
+                            <a href="{% url 'ticket_modification' post.id %}"><input type="button" class="button" value="Modifier"/></a>
+                            <a href="{% url 'ticket_deletion' post.id %}"><input type="button" class="button" value="Supprimer"/></a>
+                        </div>
+                    {% elif post.content_type == 'REVIEW' %}
+                        {% include 'blog/review_snippet.html' %}
+                        <div class="button_container">
+                            <a href="{% url 'review_modification' post.id %}"><input type="button" class="button" value="Modifier"/></a>
+                            <a href="{% url 'review_deletion' post.id %}"><input type="button" class="button" value="Supprimer"/></a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}

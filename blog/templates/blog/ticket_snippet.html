@@ -1,0 +1,10 @@
+<div class="horizontal_container">
+    <p>{{ post.user }} a demandé une critique</p>
+    <p><small>{{ post.time_created|date:'j F Y à f' }}</small></p>
+</div>
+<h2>{{ post.title }}</h2>
+<p>{{ post.description }}</p>
+{% if post.image %}
+    <img src="{{ post.image.url }}">
+{% endif %}
+

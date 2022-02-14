@@ -1,0 +1,13 @@
+<div class="horizontal_container">
+    <p>{{ post.user }} a publié une critique</p>
+    <p><small>{{ post.time_created|date:'j F Y à f' }}</small></p>
+</div>
+<h2>{{ post.headline }} - Note : {{ post.rating }} / 5</h2>
+<p>{{ post.body }}</p>
+<div class="ticket">
+    <p>Ticket - {{ post.ticket.user }}</p>
+    <p>{{ post.ticket.title }}</p>
+    {% if post.ticket.image %}
+        <img src="{{ post.ticket.image.url }}">
+    {% endif %}
+</div>

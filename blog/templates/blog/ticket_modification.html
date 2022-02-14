@@ -1,13 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="page_container">
-        <h1>Créer une critique</h1>
+        <h1>Modifier votre ticket</h1>
         <form method="post" action="." enctype="multipart/form-data" class="form">
             {% csrf_token %}
-            <h2>Livre / Article</h2>
             {{ ticket_form.as_p }}
-            <h2>Critique</h2>
-            {{ review_form.as_p }}
             <button type="submit" class="button">Envoyer</button>
         </form>
     </div>

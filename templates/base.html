@@ -12,7 +12,7 @@
                     {% if user.is_authenticated %}
                     <ul>
                         <li><a href="{% url 'flux' %}">Flux</a></li>
-                        <li><a href="">Posts</a></li>
+                        <li><a href="{% url 'posts' %}">Posts</a></li>
                         <li><a href="{% url 'subscriptions' %}">Abonnements</a></li>
                         <li><a href="{% url 'logout' %}">Se déconnecter ({{ request.user }})</a></li>
                     </ul>
