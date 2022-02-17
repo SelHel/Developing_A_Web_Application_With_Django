@@ -9,10 +9,29 @@ from .models import Ticket, Review, UserFollows
 from .forms import ReviewForm, TicketForm
 
 
+def get_users_viewable_posts(user, model):
+    all_posts = []
+    all_followed = UserFollows.objects.filter(user=user)
+    followed_users = [elm.followed_user for elm in all_followed]
+    if user not in followed_users:
+        followed_users.append(user)
+
+    all_posts = model.objects.filter(user__in=followed_users)
+    return all_posts
+
+
 @login_required
 def flux(request):
-    tickets = Ticket.objects.all()
-    return render(request, 'blog/flux.html', context={'tickets': tickets})
+    reviews = get_users_viewable_posts(request.user, Review)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    tickets = get_users_viewable_posts(request.user, Ticket)
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+    return render(request, 'blog/flux.html', context={'posts': posts})
 
 
 @login_required
@@ -55,8 +74,10 @@ def ticket_modification(request, ticket_id):
             ticket.user = request.user
             ticket.save()
             return redirect('posts')
+    else:
+        ticket_form = TicketForm(instance=ticket)
 
-    return render(request, 'blog/ticket_modification.html', context={})
+    return render(request, 'blog/ticket_modification.html', context={'ticket_form': ticket_form})
 
 
 @login_required
@@ -65,6 +86,16 @@ def ticket_deletion(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     ticket.delete()
     return redirect('posts')
+
+
+@login_required
+def ticket_confirm_deletion(request, ticket_id):
+    """Permet de confirmer la suppression d'un ticket."""
+    previous_page = request.META.get('HTTP_REFERER', '/')
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    return render(request, 'blog/ticket_confirm_deletion.html',
+                  context={'post': ticket, 'previous_page': previous_page})
 
 
 @login_required
@@ -86,34 +117,46 @@ def review_creation(request):
             review.save()
             return redirect('flux')
 
-    context = {
-        'ticket_form': ticket_form,
-        'review_form': review_form,
-    }
-
-    return render(request, 'blog/review_creation.html', context=context)
+    return render(request, 'blog/review_creation.html',
+                  context={'ticket_form': ticket_form, 'review_form': review_form})
 
 
 @login_required
 def ticket_review_creation(request, ticket_id):
     """"Permet la création d'une critique en réponse à un ticket."""
-    pass
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+    if request.method == 'POST':
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect('flux')
+    else:
+        review_form = ReviewForm(instance=ticket)
+
+    return render(request, 'blog/ticket_review_creation.html',
+                  context={'review_form': review_form, 'post': ticket})
 
 
 @login_required
 def review_modification(request, review_id):
     """Permet la modification d'une critique."""
     review = get_object_or_404(Review, id=review_id)
+    ticket = Ticket.objects.get(id=review.ticket.id)
     if request.method == 'POST':
         review_form = ReviewForm(request.POST, instance=review)
         if review_form.is_valid():
             review = review_form.save(commit=False)
             review.user = request.user
-            review.ticket = Ticket.objects.get(id=review.ticket.id)
+            review.ticket = ticket
             review.save()
             return redirect('posts')
+    else:
+        review_form = ReviewForm(instance=review)
 
-    return render(request, 'blog/review_modification.html', context={})
+    return render(request, 'blog/review_modification.html', context={'review_form': review_form, 'post': ticket})
 
 
 @login_required
@@ -122,6 +165,16 @@ def review_deletion(request, review_id):
     review = get_object_or_404(Review, id=review_id)
     review.delete()
     return redirect('posts')
+
+
+@login_required
+def review_confirm_deletion(request, review_id):
+    """Permet de confirmer la suppression d'une critique."""
+    previous_page = request.META.get('HTTP_REFERER', '/')
+    review = get_object_or_404(Review, id=review_id)
+
+    return render(request, 'blog/review_confirm_deletion.html',
+                  context={'post': review, 'previous_page': previous_page})
 
 
 @login_required

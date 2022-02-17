@@ -5,7 +5,7 @@
     {% endif %}
     <div class="page_container">
         <h1>Inscription</h1>
-        <form method="POST" action="." class="form"> 
+        <form method="POST" class="form"> 
             {% csrf_token %}
                 <div class="input-group"> 
                     {{ form.username }} 
@@ -16,7 +16,10 @@
                 <div class="input-group">
                     {{ form.password2 }} 
                 </div> 
-                <button type="submit" class="button">S'inscrire</button>
+                <div class="button_container">
+                    <a href="{% url 'login' %}"><button type="button" class="button">Retour</button></a>
+                    <button type="submit" class="button">S'inscrire</button>
+                </div>
         </form>
     </div>
 {% endblock content %}

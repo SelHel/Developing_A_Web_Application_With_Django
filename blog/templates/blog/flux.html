@@ -5,7 +5,21 @@
             <a href="{% url 'ticket_creation' %}"><input type="button" class="button" value="Demander une critique"/></a>
             <a href="{% url 'review_creation' %}"><input type="button" class="button" value="Créer une critique"/></a>
         </div>
-        <div class="flux_elements_container">
-        </div>
+        {% if posts %}
+            {% for post in posts %}
+                <div class="post_container">
+                    {% if post.content_type == 'TICKET' %}
+                        {% include 'blog/ticket_snippet.html' %}
+                        <div class="button_container">
+                            <a href="{% url 'ticket_review_creation' post.id %}"><input type="button" class="button" value="Créer une critique"/></a>
+                        </div>
+                    {% elif post.content_type == 'REVIEW' %}
+                        {% include 'blog/review_snippet.html' %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Il n'y a aucun posts dans votre flux.</p>
+        {% endif %}
     </div>
 {% endblock content %}

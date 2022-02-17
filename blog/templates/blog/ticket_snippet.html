@@ -1,5 +1,9 @@
 <div class="horizontal_container">
-    <p>{{ post.user }} a demandé une critique</p>
+    {% if user == post.user %}
+        <p>Vous avez publié un ticket</p>
+    {% else %}
+        <p> {{ post.user }} à demandé une critique</p>
+    {% endif %}
     <p><small>{{ post.time_created|date:'j F Y à f' }}</small></p>
 </div>
 <h2>{{ post.title }}</h2>

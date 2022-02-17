@@ -94,18 +94,14 @@ header .header_content li a:hover {
     color: #5D6D7E;
     font-size: 30px;
     font-weight: 600;
+    margin: 5px 0;
 }
 
 .page_container h2 {
     color: #5D6D7E;
     font-size: 15px;
     font-weight: 600;
-}
-
-.page_container h3 {
-    color: #5D6D7E;
-    font-size: 30px;
-    font-weight: 600;
+    margin: 0;
 }
 
 .page_container p {
@@ -113,7 +109,7 @@ header .header_content li a:hover {
     text-align: center;
     color: #5D6D7E;
     font-size: 13px;
-    margin: 0;
+    margin: 5px 0 0 0;
 }
 
 .page_container a {
@@ -168,7 +164,7 @@ header .header_content li a:hover {
 
 /* -------------------------------- BUTTONS ----------------------------------*/
 .button {
-    margin: 0 20px;
+    margin:0 10px;
     padding: 15px 25px;
     border-radius: 5px;
     border:none;
@@ -176,6 +172,7 @@ header .header_content li a:hover {
     font-weight: 600;
     color: #fff;
     background-color: #5D6D7E;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     outline:none;
     cursor:pointer;
     transition: 0.3s;
@@ -187,19 +184,20 @@ header .header_content li a:hover {
 
 .button_container {
     height: auto;
-    max-width: 1280px;
+    max-width: 400px;
     padding: 10px 20px;
-    margin: 0 auto;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 /* ------------------------------ END BUTTONS --------------------------------*/
 
-/* ------------------------------ POSTS PAGE ---------------------------------*/
+/* ------------------------------ POSTS/FLUX PAGE ---------------------------------*/
 .post_container {
     width: 400px;
     padding: 10px 10px;
-    margin-bottom: 20px;
+    margin: 10px 0;
     border-radius: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: #fff;
@@ -210,17 +208,47 @@ header .header_content li a:hover {
 }
 
 .post_container p {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    color: #85929E;
 }
 
+.post_container h2 {
+    margin: 5px 0;
+}
+
+
 .post_container img {
-    margin-bottom: 10px;
+    width: 120px;
+	height: auto;
+    margin: 10px 0;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+}
+
+.horizontal_container_ticket {
+    height: auto;
+    width: 300px;
+    margin: 5px auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.horizontal_container {
+    height: auto;
+    width: 400px;
+    margin: 5px auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.horizontal_container p {
+    color: #85929E;
 }
 
 .ticket {
-    padding: 20px 20px;
-    margin-top: 10px;
+    width: auto;
+    padding: 10px 10px;
+    margin: 10px 0;
     border-radius: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: flex;
@@ -229,12 +257,17 @@ header .header_content li a:hover {
     justify-content: center;
 }
 
-.horizontal_container {
-    width: 380px;
-    display: flex;
-    flex-direction: row;
+.fa {
+    color: #AEB6BF;
 }
 
+.checked {
+    color: #F5B041;
+}
+
+.page_container .headline {
+    margin-top: 10px;
+}
 
 /* ---------------------------- END POSTS PAGE -------------------------------*/
 

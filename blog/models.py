@@ -11,7 +11,7 @@ class Ticket(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to='images')
     time_created = models.DateTimeField(auto_now_add=True)
 
-    IMAGE_MAX_SIZE = (150, 150)
+    IMAGE_MAX_SIZE = (500, 500)
 
     def resize_image(self):
         image = Image.open(self.image)
@@ -20,7 +20,8 @@ class Ticket(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.resize_image()
+        if self.image:
+            self.resize_image()
 
     def __str__(self):
         return self.title

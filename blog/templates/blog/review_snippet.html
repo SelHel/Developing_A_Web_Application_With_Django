@@ -1,12 +1,59 @@
 <div class="horizontal_container">
-    <p>{{ post.user }} a publié une critique</p>
+    {% if user == post.user %}
+        <p>Vous avez publié une critique</p>
+    {% else %}
+        <p> {{ post.user }} à publié une critique</p>
+    {% endif %}
     <p><small>{{ post.time_created|date:'j F Y à f' }}</small></p>
 </div>
-<h2>{{ post.headline }} - Note : {{ post.rating }} / 5</h2>
+<h2>
+    {{ post.headline }} -
+    {% if post.rating == 0 %}
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    {% elif post.rating == 1 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    {% elif post.rating == 2 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    {% elif post.rating == 3 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    {% elif post.rating == 4 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+    {% elif post.rating == 5 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+    {% endif %}
+</h2>
 <p>{{ post.body }}</p>
 <div class="ticket">
-    <p>Ticket - {{ post.ticket.user }}</p>
-    <p>{{ post.ticket.title }}</p>
+    {% if user == post.ticket.user %}
+        <p>Ticket - Vous</p>
+    {% else %}
+        <p> Ticket - {{ post.ticket.user }}</p>
+    {% endif %}
+    <h2>{{ post.ticket.title }}</h2>
     {% if post.ticket.image %}
         <img src="{{ post.ticket.image.url }}">
     {% endif %}

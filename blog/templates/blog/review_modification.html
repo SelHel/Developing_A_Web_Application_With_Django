@@ -2,10 +2,12 @@
 {% block content %}
     <div class="page_container">
         <h1>Modifier votre critique</h1>
-        <form method="post" action="." enctype="multipart/form-data" class="form">
+        <p class="headline">Vous êtes en train de poster en réponse à : </p>
+        <div class="post_container">
+            {% include 'blog/ticket_snippet.html' %}
+        </div>
+        <form method="POST" enctype="multipart/form-data" class="form">
             {% csrf_token %}
-            <h2>Livre / Article</h2>
-            {{ ticket_form.as_p }}
             <h2>Critique</h2>
             {{ review_form.as_p }}
             <button type="submit" class="button">Envoyer</button>

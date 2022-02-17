@@ -19,10 +19,12 @@ urlpatterns = [
     path('ticket_creation/', blog.views.ticket_creation, name='ticket_creation'),
     path('ticket_modification/<ticket_id>', blog.views.ticket_modification, name='ticket_modification'),
     path('ticket_deletion/<ticket_id>', blog.views.ticket_deletion, name='ticket_deletion'),
-    path('ticket_review_creation/', blog.views.ticket_review_creation, name='ticket_review_creation'),
+    path('ticket_confirm_deletion/<ticket_id>', blog.views.ticket_confirm_deletion, name='ticket_confirm_deletion'),
+    path('ticket_review_creation/<ticket_id>', blog.views.ticket_review_creation, name='ticket_review_creation'),
     path('review_creation/', blog.views.review_creation, name='review_creation'),
     path('review_modification/<review_id>', blog.views.review_modification, name='review_modification'),
     path('review_deletion/<review_id>', blog.views.review_deletion, name='review_deletion'),
+    path('review_confirm_deletion/<review_id>', blog.views.review_confirm_deletion, name='review_confirm_deletion'),
 ]
 if settings.DEBUG:
     urlpatterns += static(

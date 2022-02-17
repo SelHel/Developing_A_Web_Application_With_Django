@@ -3,13 +3,13 @@
     <div class="page_container">
         <h1>Suivre d'autres utilisateurs</h1>
         
-        <form method="post" class="subscription_form">
+        <form method="POST" class="subscription_form">
             {% csrf_token %}
             <input type="text" name="username" id="username" placeholder="Nom d'utilisateur">
             <button type="submit" class="button">Envoyer</button>
         </form>
 
-        <h3>Abonnements</h3>
+        <h1>Abonnements</h1>
         <table class="subscriptions_table">
             <tbody>
             {% for followed in all_followed %}
@@ -21,7 +21,7 @@
             </tbody>
         </table>
             
-        <h3>Abonnés</h3>
+        <h1>Abonnés</h1>
         <table class="subscriptions_table">
             <tbody>
             {% for follower in all_followers %}

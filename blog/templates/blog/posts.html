@@ -9,17 +9,19 @@
                         {% include 'blog/ticket_snippet.html' %}
                         <div class="button_container">
                             <a href="{% url 'ticket_modification' post.id %}"><input type="button" class="button" value="Modifier"/></a>
-                            <a href="{% url 'ticket_deletion' post.id %}"><input type="button" class="button" value="Supprimer"/></a>
+                            <a href="{% url 'ticket_confirm_deletion' post.id %}"><input type="button" class="button" value="Supprimer"/></a>
                         </div>
                     {% elif post.content_type == 'REVIEW' %}
                         {% include 'blog/review_snippet.html' %}
                         <div class="button_container">
                             <a href="{% url 'review_modification' post.id %}"><input type="button" class="button" value="Modifier"/></a>
-                            <a href="{% url 'review_deletion' post.id %}"><input type="button" class="button" value="Supprimer"/></a>
+                            <a href="{% url 'review_confirm_deletion' post.id %}"><input type="button" class="button" value="Supprimer"/></a>
                         </div>
                     {% endif %}
                 </div>
             {% endfor %}
+        {% else %}
+            <p>Vous n'avez aucun posts.</p>
         {% endif %}
     </div>
 {% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page_container">
+        <h1>Supprimer votre critique</h1>
+        <p>Êtes-vous sûr de vouloir supprimer cette critique :</p>
+        <div class="post_container">
+            {% include 'blog/review_snippet.html' %}
+        </div>
+        <div class="button_container">
+            <a href="{{ previous_page }}"><input type="button" class="button" value="Annuler"/></a>
+            <a href="{% url 'review_deletion' post.id %}"><input type="button" class="button" value="Supprimer"/></a>
+        </div>
+    </div>
+{% endblock content %}

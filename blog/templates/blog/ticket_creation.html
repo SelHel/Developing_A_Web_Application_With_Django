@@ -2,7 +2,7 @@
 {% block content %}
     <div class="page_container">
         <h1>Créer un ticket</h1>
-        <form method="post" action="." enctype="multipart/form-data" class="form">
+        <form method="POST" enctype="multipart/form-data" class="form">
             {% csrf_token %}
             {{ ticket_form.as_p }}
             <button type="submit" class="button">Envoyer</button>

@@ -3,7 +3,7 @@
     <p>{{ message }}</p>
     <div class="page_container">
         <h1>Connexion</h1>
-        <form method="POST" action="." class="form"> 
+        <form method="POST" class="form"> 
             {% csrf_token %}
                 <div class="input-group"> 
                     {{form.username}} 
