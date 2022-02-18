@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
@@ -67,6 +68,9 @@ def ticket_creation(request):
 def ticket_modification(request, ticket_id):
     """Permet la modification d'un ticket."""
     ticket = get_object_or_404(Ticket, id=ticket_id)
+    if ticket.user != request.user:
+        messages.warning(request=request, message="Vous n'êtes pas autorisé à modifier ce ticket.")
+        return redirect('logout')
     if request.method == 'POST':
         ticket_form = TicketForm(request.POST, request.FILES, instance=ticket)
         if ticket_form.is_valid():
@@ -84,6 +88,9 @@ def ticket_modification(request, ticket_id):
 def ticket_deletion(request, ticket_id):
     """Permet la suppression d'un ticket."""
     ticket = get_object_or_404(Ticket, id=ticket_id)
+    if ticket.user != request.user:
+        messages.warning(request, "Vous n'êtes pas autorisé à supprimer ce ticket.")
+        return redirect('logout')
     ticket.delete()
     return redirect('posts')
 

@@ -117,6 +117,10 @@ header .header_content li a:hover {
     color: #5D6D7E;
 }
 
+.alert-warning {
+    background-color: yellow;
+}
+
 /* -------------------------- END PAGE CONTAINER -----------------------------*/
 
 /* --------------------------------- FORM ------------------------------------*/
