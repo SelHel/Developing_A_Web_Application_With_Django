@@ -44,7 +44,7 @@ L'interface utilisateur devait correspondre à celle conçue dans les wireframes
 	pip install -r requirements.txt
 	```
 ## Exécution de l'application
-* Pour exécuter l'application toujours le terminal sous Mac/Linux ou l'invite de commandes sous Windows placez vous dans le dossier "OpenclassroomsProject9" puis exécutez le serveur de développement en utilisant la commande :
+* Pour exécuter l'application toujours dans le terminal sous Mac/Linux ou l'invite de commandes sous Windows placez vous dans le dossier "OpenclassroomsProject9" puis exécutez le serveur de développement en utilisant la commande :
 
 	```
 	python manage.py runserver

@@ -10,11 +10,9 @@
                 <div class="post_container">
                     {% if post.content_type == 'TICKET' %}
                         {% include 'blog/ticket_snippet.html' %}
-                        {% if len(post.reviews.all) == 0 %}
                         <div class="button_container">
                             <a href="{% url 'ticket_review_creation' post.id %}"><input type="button" class="button" value="Créer une critique"/></a>
                         </div>
-                        {% endif %}
                     {% elif post.content_type == 'REVIEW' %}
                         {% include 'blog/review_snippet.html' %}
                     {% endif %}

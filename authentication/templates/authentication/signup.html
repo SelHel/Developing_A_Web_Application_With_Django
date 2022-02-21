@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
     <div class="page_container">
         <h1>Inscription</h1>
+        {% if form.errors %}
+            {{ form.errors }}
+        {% endif %}
         <form method="POST" class="form"> 
             {% csrf_token %}
                 <div class="input-group"> 

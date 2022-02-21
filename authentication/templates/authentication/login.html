@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <p>{{ message }}</p>
+    
     <div class="page_container">
         <h1>Connexion</h1>
+        <p>{{ message }}</p>
         <form method="POST" class="form"> 
             {% csrf_token %}
                 <div class="input-group"> 
@@ -11,6 +12,7 @@
                 <div class="input-group">
                     {{form.password}}
                 </div>
+                
                 <button type="submit" class="button">Se connecter</button>
         </form>
         <p>Pas encore membre ? <a href="{% url 'signup' %}">Inscrivez-vous maintenant !</a></p>

@@ -69,7 +69,7 @@ def ticket_modification(request, ticket_id):
     """Permet la modification d'un ticket."""
     ticket = get_object_or_404(Ticket, id=ticket_id)
     if ticket.user != request.user:
-        messages.warning(request=request, message="Vous n'êtes pas autorisé à modifier ce ticket.")
+        messages.warning(request, "Vous n'êtes pas autorisé à modifier ce ticket.")
         return redirect('logout')
     if request.method == 'POST':
         ticket_form = TicketForm(request.POST, request.FILES, instance=ticket)
@@ -152,6 +152,9 @@ def review_modification(request, review_id):
     """Permet la modification d'une critique."""
     review = get_object_or_404(Review, id=review_id)
     ticket = Ticket.objects.get(id=review.ticket.id)
+    if review.user != request.user:
+        messages.warning(request, "Vous n'êtes pas autorisé à modifier cette critique.")
+        return redirect('logout')
     if request.method == 'POST':
         review_form = ReviewForm(request.POST, instance=review)
         if review_form.is_valid():
@@ -170,6 +173,9 @@ def review_modification(request, review_id):
 def review_deletion(request, review_id):
     """Permet la suppression d'une critique."""
     review = get_object_or_404(Review, id=review_id)
+    if review.user != request.user:
+        messages.warning(request, "Vous n'êtes pas autorisé à supprimer cette critique.")
+        return redirect('logout')
     review.delete()
     return redirect('posts')
 
