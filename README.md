@@ -44,17 +44,23 @@ L'interface utilisateur devait correspondre à celle conçue dans les wireframes
 	pip install -r requirements.txt
 	```
 ## Exécution de l'application
-* Pour exécuter l'application toujours dans le terminal sous Mac/Linux ou l'invite de commandes sous Windows placez vous dans le dossier "OpenclassroomsProject9" puis exécutez le serveur de développement en utilisant la commande :
+* Pour exécuter l'application toujours dans le terminal sous Mac/Linux ou l'invite de commandes sous Windows lancez le serveur de développement en utilisant la commande :
 
 	```
 	python manage.py runserver
 	```
 
-* Pour accéder à la page d'accueil et naviguer dans l'application copier et coller cette adresse dans votre navigateur :
+* Pour accéder à la page d'accueil et naviguer dans l'application coller cette adresse dans votre navigateur :
 	
 	```
 	http://127.0.0.1:8000/
 	```
+* Pour accéder au site d'administration de Django et pouvoir effectué des opérations CRUD coller cette adresse dans votre navigateur :
+
+	```
+	 http://127.0.0.1:8000/admin/
+	```
+* Connectez-vous en utilisant le nom d'utilisateur "admin" et le mot de passe "admin".
 
 ## Auteur
 **Selim Helaoui**

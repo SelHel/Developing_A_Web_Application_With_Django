@@ -117,6 +117,9 @@ header .header_content li a:hover {
     color: #5D6D7E;
 }
 
+.alert-success {
+    background-color: #48C9B0;
+}
 .alert-warning {
     background-color: #F5B041;
 }

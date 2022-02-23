@@ -10,25 +10,38 @@ from .models import Ticket, Review, UserFollows
 from .forms import ReviewForm, TicketForm
 
 
-def get_users_viewable_posts(user, model):
-    all_posts = []
+def get_users_viewable_tickets(user):
+    all_tickets = []
     all_followed = UserFollows.objects.filter(user=user)
     followed_users = [elm.followed_user for elm in all_followed]
     if user not in followed_users:
         followed_users.append(user)
 
-    all_posts = model.objects.filter(user__in=followed_users)
-    return all_posts
+    all_tickets = Ticket.objects.filter(user__in=followed_users)
+    return all_tickets
+
+
+def get_users_viewable_reviews(user):
+    all_followed = UserFollows.objects.filter(user=user)
+    followed_users = [elm.followed_user for elm in all_followed]
+    if user not in followed_users:
+        followed_users.append(user)
+
+    all_followed_reviews = Review.objects.filter(user__in=followed_users)
+    all_followed_tickets = get_users_viewable_tickets(user)
+    all_reviews_to_tickets_of_followed = Review.objects.filter(ticket__in=all_followed_tickets)
+    return all_followed_reviews, all_reviews_to_tickets_of_followed
 
 
 @login_required
 def flux(request):
-    reviews = get_users_viewable_posts(request.user, Review)
-    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-    tickets = get_users_viewable_posts(request.user, Ticket)
+    reviews = get_users_viewable_reviews(request.user)
+    reviews_0 = reviews[0].annotate(content_type=Value('REVIEW', CharField()))
+    reviews_1 = reviews[1].annotate(content_type=Value('REVIEW', CharField()))
+    tickets = get_users_viewable_tickets(request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     posts = sorted(
-        chain(reviews, tickets),
+        set(chain(reviews_0, reviews_1, tickets)),
         key=lambda post: post.time_created,
         reverse=True
     )
@@ -59,6 +72,7 @@ def ticket_creation(request):
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
             ticket.save()
+            messages.success(request, "Votre ticket a bien été créé.")
             return redirect('flux')
 
     return render(request, 'blog/ticket_creation.html', context={'ticket_form': ticket_form})
@@ -77,6 +91,7 @@ def ticket_modification(request, ticket_id):
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
             ticket.save()
+            messages.success(request, "Votre ticket a bien été modifié.")
             return redirect('posts')
     else:
         ticket_form = TicketForm(instance=ticket)
@@ -92,6 +107,7 @@ def ticket_deletion(request, ticket_id):
         messages.warning(request, "Vous n'êtes pas autorisé à supprimer ce ticket.")
         return redirect('logout')
     ticket.delete()
+    messages.success(request, "Votre ticket a bien été supprimé.")
     return redirect('posts')
 
 
@@ -122,6 +138,7 @@ def review_creation(request):
             review.rating = request.POST.get('rating')
             review.user = request.user
             review.save()
+            messages.success(request, "Votre critique a bien été créée.")
             return redirect('flux')
 
     return render(request, 'blog/review_creation.html',
@@ -139,6 +156,7 @@ def ticket_review_creation(request, ticket_id):
             review.user = request.user
             review.ticket = ticket
             review.save()
+            messages.success(request, "Votre critique a bien été créée.")
             return redirect('flux')
     else:
         review_form = ReviewForm(instance=ticket)
@@ -162,6 +180,7 @@ def review_modification(request, review_id):
             review.user = request.user
             review.ticket = ticket
             review.save()
+            messages.success(request, "Votre critique a bien été modifiée.")
             return redirect('posts')
     else:
         review_form = ReviewForm(instance=review)
@@ -177,6 +196,7 @@ def review_deletion(request, review_id):
         messages.warning(request, "Vous n'êtes pas autorisé à supprimer cette critique.")
         return redirect('logout')
     review.delete()
+    messages.success(request, "Votre critique a bien été supprimée.")
     return redirect('posts')
 
 
