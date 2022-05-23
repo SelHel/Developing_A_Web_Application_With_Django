@@ -15,13 +15,13 @@ L'interface utilisateur devait correspondre à celle conçue dans les wireframes
 
 ## Installation de l'application
 
-* Récupérer les livrables du projet sur votre poste de travail en téléchargant le dossier **OpenclassroomsProject9-master** depuis ce lien [GitHub](https://github.com/SelHel/OpenclassroomsProject9.git) ou en clonant le dépôt en utilisant le terminal sous Mac/Linux ou l'invite de commandes sous Windows :<br>
+* Récupérer les livrables du projet sur votre poste de travail en téléchargant le dossier **Developing_A_Web_Application_With_Django_Framework-master** depuis ce lien [GitHub](https://github.com/SelHel/Developing_A_Web_Application_With_Django_Framework.git) ou en clonant le dépôt en utilisant le terminal sous Mac/Linux ou l'invite de commandes sous Windows :<br>
 
 	```
-	git clone https://github.com/SelHel/OpenclassroomsProject9.git
+	git clone https://github.com/SelHel/Developing_A_Web_Application_With_Django_Framework.git
 	```
 
-* Ensuite, placez vous dans le dossier "OpenclassroomsProject9" et créez un environnement virtuel :
+* Ensuite, placez vous dans le dossier courant et créez un environnement virtuel :
 
 	```
 	python -m venv <your-virtual-env-name>
